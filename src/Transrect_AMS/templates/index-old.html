@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Welcome to Transrect Sales & Services </title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <!-- <link href="/assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"> -->
+
+  <link rel="icon" href="{{ url_for('static', filename='assets/img/favicon.png') }}">
+  <link rel="apple-touch-icon" href="{{ url_for('static', filename='assets/img/apple-touch-icon.png') }}">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <!-- <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet"> -->
+
+  <link rel="stylesheet" type="text/css"
+    href="{{ url_for('static', filename='assets/vendor/bootstrap/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" type="text/css"
+    href="{{ url_for('static', filename='assets/vendor/bootstrap-icons/bootstrap-icons.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/vendor/aos/aos.css') }}">
+  <link rel="stylesheet" type="text/css"
+    href="{{ url_for('static', filename='assets/vendor/swiper/swiper-bundle.min.css') }}">
+  <link rel="stylesheet" type="text/css"
+    href="{{ url_for('static', filename='assets/vendor/glightbox/css/glightbox.min.css') }}">
+
+  <!-- Main CSS File -->
+  <!-- <link href="assets/css/main.css" rel="stylesheet"> -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/main.css') }}">
+
+  <!-- =======================================================
+  * Template Name: Knight
+  * Template URL: https://bootstrapmade.com/knight-free-bootstrap-theme/
+  * Updated: Oct 16 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
+
+      <a href="/home" class="logo d-flex align-items-center me-auto me-xl-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1 class="sitename">Transrect </h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="/home" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Serivces</a></li>
+          <li class="dropdown"><a href="#"><span>Machines</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#">Machines</a></li>
+              <li class="dropdown"><a href="#"><span>Machines</span> <i
+                    class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  <li><a href="#">Machines</a></li>
+                  <li><a href="#">Machines</a></li>
+                  <li><a href="#">Machines</a></li>
+                  <li><a href="#">Machines</a></li>
+                  <li><a href="#">Machines</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Machines</a></li>
+              <li><a href="#">Machines</a></li>
+              <li><a href="#">Machines</a></li>
+            </ul>
+          </li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+      <div class="header-social-links">
+        <a href="{{ url_for('log.account_logout') }}" class="btn-get-started">Logout</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+
+    {% block content %}
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+
+      <div class="container text-center">
+        <div class="row justify-content-center" data-aos="zoom-out">
+          <div class="col-lg-8">
+            <img src="{{ url_for('static', filename='assets/img/hero-logo.png') }}" alt="" class="img-fluid mb-3">
+            <h2>Welcome To <br>Transrect Sales & serivces</h2>
+            <p>Weld Strong, Last Long</p>
+            <a href="#about" class="btn-get-started">Get Started</a>
+          </div>
+        </div>
+      </div>
+
+    </section><!-- /Hero Section -->
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>About Transrect Sales & Services </h2>
+        <p>About Us </p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+          <div class="col-lg-6">
+            <img src="{{ url_for('static', filename='assets/img/about.jpg') }}" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-6 content">
+            <h3>Transrect Sales & services </h3>
+            <p class="fst-italic">
+              Your Partner in Precision Welding Solutions
+            </p>
+            <ul>
+              <li><i class="bi bi-check2-all"></i> <span> Transrect Sales & Services is committed to delivering
+                  high-quality welding machines and parts, ensuring durability and performance for industrial
+                  applications.</span></li>
+              <li><i class="bi bi-check2-all"></i> <span>We work with trusted manufacturers to provide products that
+                  meet the highest standards, guaranteeing reliability and precision for every welding need.</span></li>
+              <li><i class="bi bi-check2-all"></i> <span>Our customer-centric approach ensures tailored solutions for
+                  clients, helping them achieve their goals with the right equipment and expert support.</span></li>
+            </ul>
+            <p>
+              Transrect Sales & Services takes pride in empowering industries with cutting-edge welding solutions. Our
+              dedication to excellence and innovation ensures that our clients receive unparalleled service and
+              dependable products for long-term success.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /About Section -->
+
+    <!-- Clients Section -->
+    <section id="clients" class="clients section">
+
+      <div class="container">
+
+        <div class="swiper init-swiper">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 600,
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": "auto",
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+              },
+              "breakpoints": {
+                "320": {
+                  "slidesPerView": 2,
+                  "spaceBetween": 40
+                },
+                "480": {
+                  "slidesPerView": 3,
+                  "spaceBetween": 60
+                },
+                "640": {
+                  "slidesPerView": 4,
+                  "spaceBetween": 80
+                },
+                "992": {
+                  "slidesPerView": 6,
+                  "spaceBetween": 120
+                }
+              }
+            }
+          </script>
+          <div class="swiper-wrapper align-items-center">
+            <div class="swiper-slide"><img src="{{ url_for('static', filename='assets/img/clients/client-1.png') }}"
+                class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="{{ url_for('static', filename='assets/img/clients/client-2.png') }}"
+                class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="{{ url_for('static', filename='assets/img/clients/client-3.png') }}"
+                class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="{{ url_for('static', filename='assets/img/clients/client-4.png') }}"
+                class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="{{ url_for('static', filename='assets/img/clients/client-5.png') }}"
+                class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="{{ url_for('static', filename='assets/img/clients/client-6.png') }}"
+                class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="{{ url_for('static', filename='assets/img/clients/client-7.png') }}"
+                class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="{{ url_for('static', filename='assets/img/clients/client-8.png') }}"
+                class="img-fluid" alt=""></div>
+            <!-- <div class="swiper-slide"><img src="assets/img/clients/client-2.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/client-3.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/client-4.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/client-5.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/client-6.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/client-7.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/client-8.png" class="img-fluid" alt=""></div> -->
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Clients Section -->
+
+    <!-- Featured Services Section -->
+    <section id="featured-services" class="featured-services section">
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Servies Provided By Transrect Sales & Services </h2>
+        <p>Services Provided to Our Custumers </p>
+      </div><!-- End Section Title -->
+
+
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="card">
+              <!-- custom img1-->
+              <img src="{{ url_for('static', filename='assets/img/cards-1.jpg') }}" alt="" class="img-fluid">
+              <div class="card-body">
+                <h3><a href="#" class="stretched-link">(topic title)</a></h3>
+                <div class="card-content">
+                  <p>(main topic in short)</p>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Card Item (1) -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="card">
+              <!-- custom img2-->
+              <img src="{{ url_for('static', filename='assets/img/cards-2.jpg') }}" alt="" class="img-fluid">
+              <div class="card-body">
+                <h3><a href="#" class="stretched-link">(topic title)</a></h3>
+                <div class="card-content">
+                  <p>(main topic in short )</p>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Card Item (2)-->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="card">
+              <!-- custom img3-->
+              <img src="{{ url_for('static', filename='assets/img/cards-3.jpg') }}" alt="" class="img-fluid">
+              <div class="card-body">
+                <h3><a href="#" class="stretched-link">(topic title)</a></h3>
+                <div class="card-content">
+                  <p>(main topic in short )</p>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Card Item (3)-->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Featured Services Section -->
+
+    <!-- Call To Action Section -->
+    <section id="call-to-action" class="call-to-action section dark-background">
+
+      <div class="container">
+
+        <div class="row" data-aos="zoom-in" data-aos-delay="100">
+          <div class="col-xl-9 text-center text-xl-start">
+            <h3>Call To Action</h3>
+            <p>Discover reliable welding solutions with Transrect Sales & Services. Explore our premium range of welding
+              machines and parts, and let us provide the expertise and quality your projects demand. Contact us today to
+              get started.</p>
+          </div>
+          <div class="col-xl-3 cta-btn-container text-center">
+            <a class="cta-btn align-middle" href="#">Call To Action</a>
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Call To Action Section -->
+
+    <!-- Services Section -->
+    <section id="services" class="services section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Services</h2>
+        <p>Delivering high-quality welding machines, parts, and solutions tailored to your industry’s needs.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-6 " data-aos="fade-up" data-aos-delay="100">
+            <div class="service-item d-flex">
+              <div class="icon flex-shrink-0"><i class="bi bi-briefcase"></i></div>
+              <div>
+                <h4 class="title"><a href="{{ url_for('log.special_service') }}" class="stretched-link">Comprehensive
+                    Welding
+                    Machines</a></h4>
+                <p class="description">Offering a wide range of high-quality welding machines designed to deliver
+                  efficiency and precision for all industrial applications.</p>
+              </div>
+            </div>
+          </div>
+          <!-- End Service Item -->
+
+          <div class="col-lg-6 " data-aos="fade-up" data-aos-delay="200">
+            <div class="service-item d-flex">
+              <div class="icon flex-shrink-0"><i class="bi bi-card-checklist"></i></div>
+              <div>
+                <h4 class="title"><a href="{{ url_for('log.special_service') }}" class="stretched-link">Genuine Welding
+                    Parts</a></h4>
+                <p class="description">Supplying durable and reliable welding parts from trusted manufacturers to ensure
+                  optimal performance and longevity.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-6 " data-aos="fade-up" data-aos-delay="300">
+            <div class="service-item d-flex">
+              <div class="icon flex-shrink-0"><i class="bi bi-bar-chart"></i></div>
+              <div>
+                <h4 class="title"><a href="{{ url_for('log.special_service') }}" class="stretched-link">Expert
+                    Consultation</a></h4>
+                <p class="description">Providing expert advice to help you select the right equipment and solutions for
+                  your specific welding projects.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-6 " data-aos="fade-up" data-aos-delay="400">
+            <div class="service-item d-flex">
+              <div class="icon flex-shrink-0"><i class="bi bi-binoculars"></i></div>
+              <div>
+                <h4 class="title"><a href="{{ url_for('log.special_service') }}" class="stretched-link">Maintenance &
+                    Support</a></h4>
+                <p class="description">Dedicated after-sales service and maintenance support to keep your equipment
+                  running smoothly and efficiently.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-6 " data-aos="fade-up" data-aos-delay="500">
+            <div class="service-item d-flex">
+              <div class="icon flex-shrink-0"><i class="bi bi-brightness-high"></i></div>
+              <div>
+                <h4 class="title"><a href="{{ url_for('log.special_service') }}" class="stretched-link"> Customized
+                    Solutions</a></h4>
+                <p class="description">Tailored welding solutions designed to meet the unique requirements of every
+                  industry and application.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-6 " data-aos="fade-up" data-aos-delay="600">
+            <div class="service-item d-flex">
+              <div class="icon flex-shrink-0"><i class="bi bi-calendar4-week"></i></div>
+              <div>
+                <h4 class="title"><a href="{{ url_for('log.special_service') }}"
+                    class="stretched-link">Industry-Standard Products</a>
+                </h4>
+                <p class="description">Ensuring all products adhere to the highest quality and safety standards for
+                  reliable operation.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Services Section -->
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Machines Provided by Us </h2>
+        <p>Delivering high-quality welding machines, parts, and solutions tailored to your industry’s needs.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+
+          <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
+            <li data-filter="*" class="filter-active">All</li>
+            <li data-filter=".filter-app">App</li>
+            <li data-filter=".filter-product">Card</li>
+            <li data-filter=".filter-branding">Web</li>
+          </ul><!-- End Portfolio Filters -->
+
+          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+              <img src="{{ url_for('static', filename='assets/img/masonry-portfolio/masonry-portfolio-1.jpg') }}"
+                class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>App 1</h4>
+                <p>Lorem ipsum, dolor sit</p>
+                <a href="{{ url_for('static', filename='assets/img/masonry-portfolio/masonry-portfolio-1.jpg') }}"
+                  title="App 1" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+              <img src="{{ url_for('static', filename='assets/img/masonry-portfolio/masonry-portfolio-2.jpg') }}"
+                class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Product 1</h4>
+                <p>Lorem ipsum, dolor sit</p>
+                <a href="{{ url_for('static', filename='assets/img/masonry-portfolio/masonry-portfolio-2.jpg') }}"
+                  title="Product 1" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+              <img src="{{ url_for('static', filename='assets/img/masonry-portfolio/masonry-portfolio-3.jpg') }}"
+                class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Branding 1</h4>
+                <p>Lorem ipsum, dolor sit</p>
+                <a href="{{ url_for('static', filename='assets/img/masonry-portfolio/masonry-portfolio-3.jpg') }}"
+                  title="Branding 1" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+              <img src="{{ url_for('static', filename='assets/img/masonry-portfolio/masonry-portfolio-4.jpg') }}"
+                class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>App 2</h4>
+                <p>Lorem ipsum, dolor sit</p>
+                <a href="{{ url_for('static', filename='assets/img/masonry-portfolio/masonry-portfolio-4.jpg') }}"
+                  title="App 2" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+              <img src="{{ url_for('static', filename='assets/img/masonry-portfolio/masonry-portfolio-5.jpg') }}"
+                class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Product 2</h4>
+                <p>Lorem ipsum, dolor sit</p>
+                <a href="{{ url_for('static', filename='assets/img/masonry-portfolio/masonry-portfolio-5.jpg') }}"
+                  title="Product 2" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+              <img src="{{ url_for('static', filename='assets/img/masonry-portfolio/masonry-portfolio-6.jpg') }}"
+                class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Branding 2</h4>
+                <p>Lorem ipsum, dolor sit</p>
+                <a href="{{ url_for('static', filename='assets/img/masonry-portfolio/masonry-portfolio-6.jpg') }}"
+                  title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+              <img src="{{ url_for('static', filename='assets/img/masonry-portfolio/masonry-portfolio-7.jpg') }}"
+                class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>App 3</h4>
+                <p>Lorem ipsum, dolor sit</p>
+                <a href="{{ url_for('static', filename='assets/img/masonry-portfolio/masonry-portfolio-7.jpg') }}"
+                  title="App 3" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+              <img src="{{ url_for('static', filename='assets/img/masonry-portfolio/masonry-portfolio-8.jpg') }}"
+                class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Product 3</h4>
+                <p>Lorem ipsum, dolor sit</p>
+                <a href="{{ url_for('static', filename='assets/img/masonry-portfolio/masonry-portfolio-8.jpg') }}"
+                  title="Product 3" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+              <img src="{{ url_for('static', filename='assets/img/masonry-portfolio/masonry-portfolio-9.jpg') }}"
+                class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Branding 3</h4>
+                <p>Lorem ipsum, dolor sit</p>
+                <a href="{{ url_for('static', filename='assets/img/masonry-portfolio/masonry-portfolio-9.jpg') }}"
+                  title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+          </div><!-- End Portfolio Container -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Portfolio Section -->
+
+
+
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Pricing</h2>
+        <p>Choose from below options </p>
+      </div><!-- End Section Title -->
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="100">
+            <div class="pricing-item">
+              <h3>Machine</h3>
+              <h4><sup>$</sup>0<span> / month</span></h4>
+              <ul>
+                <li><i class="bi bi-check"></i> <span>Quam adipiscing vitae proin</span></li>
+                <li><i class="bi bi-check"></i> <span>Nec feugiat nisl pretium</span></li>
+                <li><i class="bi bi-check"></i> <span>Nulla at volutpat diam uteera</span></li>
+                <li class="na"><i class="bi bi-x"></i> <span>Pharetra massa massa ultricies</span></li>
+                <li class="na"><i class="bi bi-x"></i> <span>Massa ultricies mi quis hendrerit</span></li>
+              </ul>
+              <a href="#" class="buy-btn">Buy Now</a>
+            </div>
+          </div><!-- End Pricing Item -->
+
+          <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="200">
+            <div class="pricing-item featured">
+              <h3>Machine</h3>
+              <h4><sup>$</sup>29<span> / month</span></h4>
+              <ul>
+                <li><i class="bi bi-check"></i> <span>Quam adipiscing vitae proin</span></li>
+                <li><i class="bi bi-check"></i> <span>Nec feugiat nisl pretium</span></li>
+                <li><i class="bi bi-check"></i> <span>Nulla at volutpat diam uteera</span></li>
+                <li><i class="bi bi-check"></i> <span>Pharetra massa massa ultricies</span></li>
+                <li><i class="bi bi-check"></i> <span>Massa ultricies mi quis hendrerit</span></li>
+              </ul>
+              <a href="#" class="buy-btn">Buy Now</a>
+            </div>
+          </div><!-- End Pricing Item -->
+
+          <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="300">
+            <div class="pricing-item">
+              <h3>Machine</h3>
+              <h4><sup>$</sup>49<span> / month</span></h4>
+              <ul>
+                <li><i class="bi bi-check"></i> <span>Quam adipiscing vitae proin</span></li>
+                <li><i class="bi bi-check"></i> <span>Nec feugiat nisl pretium</span></li>
+                <li><i class="bi bi-check"></i> <span>Nulla at volutpat diam uteera</span></li>
+                <li><i class="bi bi-check"></i> <span>Pharetra massa massa ultricies</span></li>
+                <li><i class="bi bi-check"></i> <span>Massa ultricies mi quis hendrerit</span></li>
+              </ul>
+              <a href="#" class="buy-btn">Buy Now</a>
+            </div>
+          </div><!-- End Pricing Item -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Pricing Section -->
+
+
+
+    <div class="container section-title" data-aos="fade-up">
+      <h2>Welding Machines</h2>
+      <p>Explore essential guidelines, tutorials, and precautions for efficient and safe use of welding machines.</p>
+    </div>
+    <!-- End Section Title -->
+
+    <div class="site-section slider-team-wrap">
+      <div class="container">
+        <div class="slider-nav d-flex justify-content-end mb-3">
+          <a href="#" class="js-prev js-custom-prev"><i class="bi bi-arrow-left-short"></i></a>
+          <a href="#" class="js-next js-custom-next"><i class="bi bi-arrow-right-short"></i></a>
+        </div>
+
+        <div class="swiper init-swiper" data-aos="fade-up" data-aos-delay="100">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 600,
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": "1",
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+              },
+              "navigation": {
+                "nextEl": ".js-custom-next",
+                "prevEl": ".js-custom-prev"
+              },
+              "breakpoints": {
+                "640": {
+                  "slidesPerView": 2,
+                  "spaceBetween": 30
+                },
+                "768": {
+                  "slidesPerView": 3,
+                  "spaceBetween": 30
+                },
+                "1200": {
+                  "slidesPerView": 3,
+                  "spaceBetween": 30
+                }
+              }
+            }
+          </script>
+
+          <div class="swiper-wrapper">
+            <!-- Card 1 -->
+            <div class="swiper-slide">
+              <div class="team">
+                <div class="pic">
+                  <img src="{{ url_for('static', filename='assets/img/machines/setup-guide.jpg') }}" alt="Setup Guide"
+                    class="img-fluid">
+                </div>
+                <h3>
+                  <a href="#"><span class="">Step-by-Step</span> Setup Guide</a>
+                </h3>
+                <span class="d-block position">Guideline</span>
+                <p>
+                  Learn how to set up your welding machine correctly, ensuring safe and efficient operation for all
+                  projects.
+                </p>
+                <p class="mb-0">
+                  <a href="#" class="more dark">Read More <span class="bi bi-arrow-right-short"></span></a>
+                </p>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="swiper-slide">
+              <div class="team">
+                <div class="pic">
+                  <img src="assets/img/machines/maintenance.jpg" alt="Maintenance Tips" class="img-fluid">
+                </div>
+                <h3>
+                  <a href="#"><span class="">Maintenance</span> Tips</a>
+                </h3>
+                <span class="d-block position">Best Practices</span>
+                <p>
+                  Ensure your welding machines last longer with regular inspections and proper maintenance techniques.
+                </p>
+                <p class="mb-0">
+                  <a href="#" class="more dark">Learn More <span class="bi bi-arrow-right-short"></span></a>
+                </p>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="swiper-slide">
+              <div class="team">
+                <div class="pic">
+                  <img src="assets/img/machines/safety.jpg" alt="Safety Precautions" class="img-fluid">
+                </div>
+                <h3>
+                  <a href="#"><span class="">Safety</span> Precautions</a>
+                </h3>
+                <span class="d-block position">Essential Guidelines</span>
+                <p>
+                  Discover key safety precautions to prevent accidents and injuries while using welding equipment.
+                </p>
+                <p class="mb-0">
+                  <a href="#" class="more dark">Read More <span class="bi bi-arrow-right-short"></span></a>
+                </p>
+              </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="swiper-slide">
+              <div class="team">
+                <div class="pic">
+                  <img src="assets/img/machines/advanced-techniques.jpg" alt="Advanced Techniques" class="img-fluid">
+                </div>
+                <h3>
+                  <a href="#"><span class="">Advanced</span> Techniques</a>
+                </h3>
+                <span class="d-block position">Tutorial</span>
+                <p>
+                  Take your welding skills to the next level with advanced tips and techniques for complex projects.
+                </p>
+                <p class="mb-0">
+                  <a href="#" class="more dark">Explore Now <span class="bi bi-arrow-right-short"></span></a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Welding Machines Section -->
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Contact</h2>
+        <p>(Details for Contact Us )</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="mb-4" data-aos="fade-up" data-aos-delay="200">
+          <iframe style="border:0; width: 100%; height: 270px;"
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48389.78314118045!2d-74.006138!3d40.710059!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus"
+            frameborder="0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div><!-- End Google Maps -->
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4">
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+              <i class="bi bi-geo-alt flex-shrink-0"></i>
+              <div>
+                <h3>Address</h3>
+                <p>None</p>
+              </div>
+            </div><!-- End Info Item -->
+
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+              <i class="bi bi-telephone flex-shrink-0"></i>
+              <div>
+                <h3>Call Us</h3>
+                <p>ph</p>
+              </div>
+            </div><!-- End Info Item -->
+
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="500">
+              <i class="bi bi-envelope flex-shrink-0"></i>
+              <div>
+                <h3>Email Us</h3>
+                <p>(Email)</p>
+              </div>
+            </div><!-- End Info Item -->
+
+          </div>
+
+          <div class="col-lg-8">
+            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up"
+              data-aos-delay="200">
+              <div class="row gy-4">
+
+                <div class="col-md-6">
+                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                </div>
+
+                <div class="col-md-6 ">
+                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+                </div>
+
+                <div class="col-md-12">
+                  <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+                </div>
+
+                <div class="col-md-12">
+                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                </div>
+
+                <div class="col-md-12 text-center">
+                  <div class="loading">Loading</div>
+                  <div class="error-message"></div>
+                  <div class="sent-message">Your message has been sent. Thank you!</div>
+
+                  <button type="submit">Send Message</button>
+                </div>
+
+              </div>
+            </form>
+          </div><!-- End Contact Form -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Contact Section -->
+
+  </main>
+
+  {% endblock %}
+  <footer id="footer" class="footer dark-background">
+
+    <div class="footer-newsletter">
+      <div class="container">
+        <div class="row justify-content-center text-center">
+          <div class="col-lg-6">
+            <h4>Join Our Newsletter</h4>
+            <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
+            <form action="forms/newsletter.php" method="post" class="php-email-form">
+              <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Subscribe">
+              </div>
+              <div class="loading">Loading</div>
+              <div class="error-message"></div>
+              <div class="sent-message">Your subscription request has been sent. Thank you!</div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="/home" class="d-flex align-items-center">
+            <span class="sitename">Transrect Sales & Services</span>
+          </a>
+          <div class="footer-contact pt-3">
+            <p>Address</p>
+            <p>Address</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>ph</span></p>
+            <p><strong>Email:</strong> <span>(Company email)</span></p>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
+          </ul>
+        </div>
+        <!--
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Web Design</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Web Development</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Product Management</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Marketing</a></li>
+          </ul>
+        </div>-->
+
+        <div class="col-lg-4 col-md-12">
+          <h4>Follow Us</h4>
+          <p>Follow Us on Our Socials </p>
+          <div class="social-links d-flex">
+            <a href=""><i class="bi bi-twitter-x"></i></a>
+            <a href=""><i class="bi bi-facebook"></i></a>
+            <a href=""><i class="bi bi-instagram"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Transrect Sales & Servies </strong> <span>All Rights
+          Reserved</span></p>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you've purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+        <!--Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
+
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{{ url_for('static', filename='assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/vendor/php-email-form/validate.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/vendor/aos/aos.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+
+  <!-- Main JS File -->
+  <!-- <script src="assets/js/main.js"></script> -->
+
+  <script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
+
+</body>
+
+</html>

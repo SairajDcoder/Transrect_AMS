@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inbox</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-bar {
+            width: calc(100% - 80px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .search-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .message {
+            background: #fff;
+            padding: 12px;
+            border-radius: 5px;
+            margin-top: 8px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .unread {
+            font-weight: bold;
+            background: #f0f0f0;
+        }
+
+        .message:hover {
+            background: #eef;
+        }
+
+        .message-content {
+            display: none;
+            padding: 10px;
+            border-top: 1px solid #ccc;
+            margin-top: 10px;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .btn {
+            padding: 6px 12px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .read-btn,
+        .confirm-btn {
+            background: green;
+            color: white;
+        }
+
+        .delete-btn,
+        .reject-btn {
+            background: red;
+            color: white;
+        }
+
+        .pagination {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .pagination button {
+            background: transparent;
+            color: #007bff;
+            border: 2px solid #007bff;
+            padding: 6px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .pagination button:hover {
+            background: #007bff;
+            color: white;
+        }
+
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .popup.error {
+            background-color: #f2dede;
+            color: #a94442;
+        }
+
+        .popup.success {
+            background-color: #dff0d8;
+            color: #3c763d;
+        }
+
+        .popup.info {
+            background-color: #d9edf7;
+            /* Light blue background */
+            color: #31708f;
+            /* Dark blue text */
+            border: 1px solid #bce8f1;
+            /* Slight border for definition */
+        }
+
+        .popup.reject {
+            background-color: #fcf8e3;
+            /* Light yellow background */
+            color: #8a6d3b;
+            /* Dark brown text */
+            border: 1px solid #faebcc;
+            /* Light brown border */
+        }
+    </style>
+    <script>
+        function toggleMessage(element) {
+            let content = element.querySelector('.message-content');
+            content.style.display = content.style.display === "none" || content.style.display === "" ? "block" : "none";
+        }
+        function showPopup(message, type) {
+            var popup = document.getElementById('popup');
+            popup.innerHTML = message;
+            popup.className = 'popup ' + type;
+            popup.style.display = 'block';
+            setTimeout(function () {
+                popup.style.display = 'none';
+            }, 3000);
+        }
+        window.onload = function () {
+            {% with messages = get_flashed_messages(with_categories = true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            showPopup("{{ message }}", "{{ category }}");
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+        }
+    </script>
+</head>
+
+<body>
+
+    <div id="popup" class="popup"></div>
+    <div class="container">
+        <h2>Inbox</h2>
+        <div class="search-container">
+            <form action="{{ url_for('log.msg_inbox_api') }}" method="POST" , novalidate>
+                {{ form.hidden_tag() }}
+                {{ form.search_query(class="search-bar", placeholder="Search transactions...") }}
+                {{ form.submit(class="btn") }}
+            </form>
+        </div>
+        <div id="inbox">
+            {% for message in messages %}
+            <div class="message {% if message.unread %}unread{% endif %}" onclick="toggleMessage(this)">
+                <span><strong>{{ message.sender_name }}:</strong> {{ message.text }} <br><small>{{ message.time
+                        }}</small></span>
+                <div class="message-content">
+                    <p>{{ message.details }}</p>
+                    <div class="btn-container">
+                        {% if message.unread %}
+                        <form
+                            action="{{ url_for('log.msg_mark_read', message_id=message.id, page=request.args.get('page', 1)) }}"
+                            method="POST">
+                            <button class="btn read-btn" type="submit">Mark as Read</button>
+                        </form>
+                        {% endif %}
+                        <form
+                            action="{{ url_for('log.msg_delete_message', message_id=message.id, page=request.args.get('page', 1)) }}"
+                            method="POST">
+                            <button class="btn delete-btn" type="submit">Delete</button>
+                        </form>
+
+                        {% if message.payment_confirmation %}
+                        <form
+                            action="{{ url_for('log.msg_confirm_payment', message_id=message.id, page=request.args.get('page', 1)) }}"
+                            method="POST">
+                            <button class="btn confirm-btn" type="submit">Confirm Payment</button>
+                        </form>
+                        <form
+                            action="{{ url_for('log.msg_reject_payment', message_id=message.id, page=request.args.get('page', 1)) }}"
+                            method="POST">
+                            <button class="btn reject-btn" type="submit">Reject Payment</button>
+                        </form>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="pagination">
+            {% if page > 1 %}
+            <a href="{{ url_for('log.msg_inbox_api', page=page-1) }}"><button>Previous</button></a>
+            {% endif %}
+            <span>Page {{ page }}</span>
+            {% if page < total_pages %} <a href="{{ url_for('log.msg_inbox_api', page=page+1) }}">
+                <button>Next</button></a>
+                {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>

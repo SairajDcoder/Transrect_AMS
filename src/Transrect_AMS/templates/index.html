@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Welcome to Transrect Sales & Services </title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link rel="icon" href="{{ url_for('static', filename='assets/img/favicon.png') }}">
+  <link rel="apple-touch-icon" href="{{ url_for('static', filename='assets/img/apple-touch-icon.png') }}">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link rel="stylesheet" type="text/css"
+    href="{{ url_for('static', filename='assets/vendor/bootstrap/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" type="text/css"
+    href="{{ url_for('static', filename='assets/vendor/bootstrap-icons/bootstrap-icons.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/vendor/aos/aos.css') }}">
+  <link rel="stylesheet" type="text/css"
+    href="{{ url_for('static', filename='assets/vendor/swiper/swiper-bundle.min.css') }}">
+  <link rel="stylesheet" type="text/css"
+    href="{{ url_for('static', filename='assets/vendor/glightbox/css/glightbox.min.css') }}">
+
+  <!-- Main CSS File -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/main.css') }}">
+
+  <style>
+    .newcardflex {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    /* Form container */
+    .custom-email-form {
+      width: 100%;
+      padding: 20px;
+      background: #fff;
+      border-radius: 5px;
+    }
+
+    /* Input fields */
+    .custom-email-form input,
+    .custom-email-form textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    /* Submit button */
+    .custom-email-form button {
+      width: 200px;
+      /* Adjust width as needed */
+      padding: 10px;
+      background: #28a745;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      display: block;
+      margin: 10px auto;
+      /* Centers the button */
+    }
+
+    .custom-email-form button:hover {
+      background: #218838;
+    }
+
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 20%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+
+    .popup.error {
+      background-color: #f2dede;
+      color: #a94442;
+    }
+
+    .popup.success {
+      background-color: #dff0d8;
+      color: #3c763d;
+    }
+
+    .popup.info {
+      background-color: #d9edf7;
+      /* Light blue background */
+      color: #31708f;
+      /* Dark blue text */
+      border: 1px solid #bce8f1;
+      /* Slight border for definition */
+    }
+  </style>
+
+  <script>
+    function showPopup(message, type) {
+      var popup = document.getElementById('popup');
+      popup.innerHTML = message;
+      popup.className = 'popup ' + type;
+      popup.style.display = 'block';
+      setTimeout(function () {
+        popup.style.display = 'none';
+      }, 3000);
+    }
+    window.onload = function () {
+      {% with messages = get_flashed_messages(with_categories = true) %}
+      {% if messages %}
+      {% for category, message in messages %}
+      showPopup("{{ message }}", "{{ category }}");
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+    }
+  </script>
+
+  <!-- =======================================================
+  * Template Name: Knight
+  * Template URL: https://bootstrapmade.com/knight-free-bootstrap-theme/
+  * Updated: Oct 16 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body class="index-page">
+
+
+  <div id="popup" class="popup"></div>
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
+
+      <a href="/home" class="logo d-flex align-items-center me-auto me-xl-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1 class="sitename">Transrect </h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="/home" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Serivces</a></li>
+          <li class="dropdown"><a href="#portfolio"><span>Machines</span> <i
+                class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="{{ url_for('log.mech_machine', id=1) }}">Co2 mig TR 300</a></li>
+              <li class="dropdown"><a href="#portfolio"><span>Others</span> <i
+                    class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  <li><a href="{{ url_for('log.mech_machine', id=5) }}">Feeder Unit</a></li>
+                  <li><a href="{{ url_for('log.mech_machine', id=14) }}">Regulator CO2</a></li>
+                  <li><a href="{{ url_for('log.mech_machine', id=7) }}">Welding Torch for 400 A</a></li>
+                  <li><a href="{{ url_for('log.mech_machine', id=18) }}">Rotary Switch 25Amp 4-way</a></li>
+                  <li><a href="{{ url_for('log.mech_machine', id=31) }}">Contactors 25Amp</a></li>
+                </ul>
+              </li>
+              <li><a href="{{ url_for('log.mech_machine', id=2) }}">Co2 mig TR 250</a></li>
+              <li><a href="{{ url_for('log.mech_machine', id=3) }}">Co2 mig TR 400</a></li>
+              <li><a href="{{ url_for('log.mech_machine', id=4) }}">Co2 mig TR 250 In-Built</a></li>
+            </ul>
+          </li>
+          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="{{ url_for('log.msg_userinbox') }}">Inbox</a></li>
+          <li><a href="{{ url_for('log.stat_user_stat') }}">My Machines</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+      <div class="header-social-links">
+        <a href="{{ url_for('log.account_logout') }}" class="btn-get-started">Logout</a>
+      </div>
+    </div>
+  </header>
+
+  {% block content %}
+  <main class="main">
+
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+
+      <div class="container text-center">
+        <div class="row justify-content-center" data-aos="zoom-out">
+          <div class="col-lg-8">
+            <img src="{{ url_for('static', filename='assets/img/hero-logo.png') }}" alt="" class="img-fluid mb-3">
+            <h2>Welcome To Transrect Sales & services</h2>
+            <p>Your Trusted Partner in Welding Solutions!</p>
+            <a href="#about" class="btn-get-started">Get Started</a>
+          </div>
+        </div>
+      </div>
+
+    </section><!-- /Hero Section -->
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>About Transrect Sales & Services </h2>
+        <p>About Us </p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+          <div class="col-lg-6">
+            <img src="{{ url_for('static', filename='assets/img/about.jpg') }}" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-6 content">
+            <h3>Transrect Sales & services </h3>
+            <p class="fst-italic">
+              Your Partner in Precision Welding Solutions
+            </p>
+            <ul>
+              <li><i class="bi bi-check2-all"></i> <span> Transrect Sales & Services is committed to delivering
+                  high-quality welding machines and parts, ensuring durability and performance for industrial
+                  applications.</span></li>
+              <li><i class="bi bi-check2-all"></i> <span>We work with trusted manufacturers to provide products that
+                  meet the highest standards, guaranteeing reliability and precision for every welding need.</span></li>
+              <li><i class="bi bi-check2-all"></i> <span>Our customer-centric approach ensures tailored solutions for
+                  clients, helping them achieve their goals with the right equipment and expert support.</span></li>
+            </ul>
+            <p>
+              Transrect Sales & Services takes pride in empowering industries with cutting-edge welding solutions. Our
+              dedication to excellence and innovation ensures that our clients receive unparalleled service and
+              dependable products for long-term success.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /About Section -->
+
+    <!-- Clients Section -->
+    <!-- <section id="clients" class="clients section">
+
+      <div class="container">
+
+        <div class="swiper init-swiper">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 600,
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": "auto",
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+              },
+              "breakpoints": {
+                "320": {
+                  "slidesPerView": 2,
+                  "spaceBetween": 40
+                },
+                "480": {
+                  "slidesPerView": 3,
+                  "spaceBetween": 60
+                },
+                "640": {
+                  "slidesPerView": 4,
+                  "spaceBetween": 80
+                },
+                "992": {
+                  "slidesPerView": 6,
+                  "spaceBetween": 120
+                }
+              }
+            }
+          </script>
+          <div class="swiper-wrapper align-items-center">
+            <div class="swiper-slide"><img src="{{ url_for('static', filename='assets/img/clients/client-1.png') }}"
+                class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="{{ url_for('static', filename='assets/img/clients/client-2.png') }}"
+                class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="{{ url_for('static', filename='assets/img/clients/client-3.png') }}"
+                class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="{{ url_for('static', filename='assets/img/clients/client-4.png') }}"
+                class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="{{ url_for('static', filename='assets/img/clients/client-5.png') }}"
+                class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="{{ url_for('static', filename='assets/img/clients/client-6.png') }}"
+                class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="{{ url_for('static', filename='assets/img/clients/client-7.png') }}"
+                class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="{{ url_for('static', filename='assets/img/clients/client-8.png') }}"
+                class="img-fluid" alt=""></div>
+          </div>
+        </div>
+
+      </div>
+
+    </section> -->
+    <!-- /Clients Section -->
+
+    <!-- Featured Services Section -->
+    <section id="featured-services" class="featured-services section">
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Servies Provided By Transrect Sales & Services </h2>
+        <p>Services Provided to Our Custumers </p>
+      </div><!-- End Section Title -->
+
+
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="card">
+              <!-- custom img1-->
+              <img src="{{ url_for('static', filename='machines/tr250a.jpg') }}" alt="" class="img-fluid">
+              <div class="card-body">
+                <h3><a href="#" class="stretched-link">TR 250</a></h3>
+                <div class="card-content">
+
+                </div>
+              </div>
+            </div>
+          </div><!-- End Card Item (1) -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="card">
+              <!-- custom img2-->
+              <img style="" src="{{ url_for('static', filename='parts/f1.png') }}" alt="" class="img-fluid">
+              <div class="card-body">
+                <h3><a href="#" class="stretched-link">Feeder Unit</a></h3>
+                <div class="card-content">
+
+                </div>
+              </div>
+            </div>
+          </div><!-- End Card Item (2)-->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="card">
+              <!-- custom img3-->
+              <img src="{{ url_for('static', filename='machines/tr400a.jpg') }}" alt="" class="img-fluid">
+              <div class="card-body">
+                <h3><a href="#" class="stretched-link">Tr 400</a></h3>
+                <div class="card-content">
+
+                </div>
+              </div>
+            </div>
+          </div><!-- End Card Item (3)-->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Featured Services Section -->
+
+    <!-- Call To Action Section -->
+    <section id="call-to-action" class="call-to-action section dark-background">
+
+      <div class="container">
+
+        <div class="row" data-aos="zoom-in" data-aos-delay="100">
+          <div class="col-xl-9 text-center text-xl-start">
+            <h3>Call To Action</h3>
+            <p>Discover reliable welding solutions with Transrect Sales & Services. Explore our premium range of welding
+              machines and parts, and let us provide the expertise and quality your projects demand. Contact us today to
+              get started.</p>
+          </div>
+          <div class="col-xl-3 cta-btn-container text-center">
+            <a class="cta-btn align-middle" href="#">Call To Action</a>
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Call To Action Section -->
+
+    <!-- Services Section -->
+    <section id="services" class="services section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Services</h2>
+        <p>Delivering high-quality welding machines, parts, and solutions tailored to your industry’s needs.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-6 " data-aos="fade-up" data-aos-delay="100">
+            <div class="service-item d-flex">
+              <div class="icon flex-shrink-0"><i class="bi bi-briefcase"></i></div>
+              <div>
+                <h4 class="title"><a href="{{ url_for('log.special_service', id=1) }}"
+                    class="stretched-link">Comprehensive
+                    Welding
+                    Machines</a></h4>
+                <p class="description">Offering a wide range of high-quality welding machines designed to deliver
+                  efficiency and precision for all industrial applications.</p>
+              </div>
+            </div>
+          </div>
+          <!-- End Service Item -->
+
+          <div class="col-lg-6 " data-aos="fade-up" data-aos-delay="200">
+            <div class="service-item d-flex">
+              <div class="icon flex-shrink-0"><i class="bi bi-card-checklist"></i></div>
+              <div>
+                <h4 class="title"><a href="{{ url_for('log.special_service', id=2) }}" class="stretched-link">Genuine
+                    Welding
+                    Parts</a></h4>
+                <p class="description">Supplying durable and reliable welding parts from trusted manufacturers to ensure
+                  optimal performance and longevity.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-6 " data-aos="fade-up" data-aos-delay="300">
+            <div class="service-item d-flex">
+              <div class="icon flex-shrink-0"><i class="bi bi-bar-chart"></i></div>
+              <div>
+                <h4 class="title"><a href="{{ url_for('log.special_service', id=3) }}" class="stretched-link">Expert
+                    Consultation</a></h4>
+                <p class="description">Providing expert advice to help you select the right equipment and solutions for
+                  your specific welding projects.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-6 " data-aos="fade-up" data-aos-delay="400">
+            <div class="service-item d-flex">
+              <div class="icon flex-shrink-0"><i class="bi bi-binoculars"></i></div>
+              <div>
+                <h4 class="title"><a href="{{ url_for('log.special_service', id=4) }}"
+                    class="stretched-link">Maintenance
+                    &
+                    Support</a></h4>
+                <p class="description">Dedicated after-sales service and maintenance support to keep your equipment
+                  running smoothly and efficiently.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-6 " data-aos="fade-up" data-aos-delay="500">
+            <div class="service-item d-flex">
+              <div class="icon flex-shrink-0"><i class="bi bi-brightness-high"></i></div>
+              <div>
+                <h4 class="title"><a href="{{ url_for('log.special_service', id=5) }}" class="stretched-link">
+                    Customized
+                    Solutions</a></h4>
+                <p class="description">Tailored welding solutions designed to meet the unique requirements of every
+                  industry and application.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-6 " data-aos="fade-up" data-aos-delay="600">
+            <div class="service-item d-flex">
+              <div class="icon flex-shrink-0"><i class="bi bi-calendar4-week"></i></div>
+              <div>
+                <h4 class="title"><a href="{{ url_for('log.special_service', id=6) }}"
+                    class="stretched-link">Industry-Standard
+                    Products</a>
+                </h4>
+                <p class="description">Ensuring all products adhere to the highest quality and safety standards for
+                  reliable operation.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Services Section -->
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Portfolio</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+
+          <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
+            <li data-filter="*" class="filter-active">All</li>
+            <li data-filter=".filter-app">Machines</li>
+            <li data-filter=".filter-product">Parts</li>
+            <li data-filter=".filter-branding">Accessories</li>
+          </ul><!-- End Portfolio Filters -->
+
+          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app newcardflex">
+              <img src="{{ url_for('static', filename='machines/tr300a.jpg') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Co2 mig 300 TR</h4>
+                <p>CO2 MIG Welding Machine</p>
+                <a href="{{ url_for('static', filename='machines/tr300a.jpg') }}" title="Co2 mig 300 TR"
+                  data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=1) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div>
+            <!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product newcardflex">
+              <img src="{{ url_for('static', filename='parts/f1.png') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Feeder Unit</h4>
+                <p>CO2 MIG inbuilt Welding Machine</p>
+                <a href="{{ url_for('static', filename='parts/f1.png') }}" title="Feeder Unit "
+                  data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=5) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding newcardflex">
+              <img src="{{ url_for('static', filename='parts/rswitch16A4.jpg') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Rotary Switch 16Amp 4-way</h4>
+                <p>Rotary Switch</p>
+                <a href="{{ url_for('static', filename='parts/rswitch16A4.jpg') }}" title="Rotary Switch 16Amp 4-way "
+                  data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=17) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app newcardflex">
+              <img src="{{ url_for('static', filename='machines/tr250a.jpg') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Co2 mig 250 TR</h4>
+                <p>CO2 MIG Welding Machine</p>
+                <a href="{{ url_for('static', filename='machines/tr250a.png') }}" title="Co2 mig 250 TR"
+                  data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=2) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product newcardflex">
+              <img src="{{ url_for('static', filename='parts/migtorch250a.png') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Welding Torch for 250 A</h4>
+                <p>CO2 MIG Torch</p>
+                <a href="{{ url_for('static', filename='parts/migtorch250a.jpg') }}" title="Welding Torch for 250 A"
+                  data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=6) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding newcardflex">
+              <img src="{{ url_for('static', filename='parts/rswitch25A1.jpg') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Rotary Switch 25Amp 4-way</h4>
+                <p>Rotary Switch</p>
+                <a href="{{ url_for('static', filename='parts/rswitch25A1.jpg') }}" title="Rotary Switch 25Amp 4-way"
+                  data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=18) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app newcardflex">
+              <img src="{{ url_for('static', filename='machines/tr400a.jpg') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Co2 mig 400 TR</h4>
+                <p>CO2 MIG Welding Machine</p>
+                <a href="{{ url_for('static', filename='machines/tr400a.jpg') }}" title="Co2 mig 400 TR"
+                  data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=3) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product newcardflex">
+              <img src="{{ url_for('static', filename='parts/migTorch1.jpg') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Welding Torch for 400 A</h4>
+                <p>CO2 MIG Torch</p>
+                <a href="{{ url_for('static', filename='parts/migTorch1.jpg') }}" title="Welding Torch for 400 A"
+                  data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=7) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <!-- <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding newcardflex">
+              <img src="{{ url_for('static', filename='assets/img/masonry-portfolio/masonry-portfolio-9.jpg') }}"
+                class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Rotary Switch 25Amp for Low & High Operation</h4>
+                <p>Rotary Switch</p>
+                <a href="{{ url_for('static', filename='assets/img/masonry-portfolio/masonry-portfolio-9.jpg') }}"
+                  title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=19) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div> -->
+            <!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app newcardflex">
+              <img src="{{ url_for('static', filename='machines/ntr250in4.jpg') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Co2 mig 250 inbuilt model</h4>
+                <p>CO2 MIG inbuilt Welding Machine</p>
+                <a href="{{ url_for('static', filename='machines/ntr250in4.jpg') }}" title="Co2 mig 250 inbuilt model"
+                  data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=4) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product newcardflex">
+              <img src="{{ url_for('static', filename='parts/controlcable.png') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Control Cable with 10-pin plug (3m)</h4>
+                <p>Control Cable</p>
+                <a href="{{ url_for('static', filename='parts/controlcable.png') }}"
+                  title="Control Cable with 10-pin plug (3m)" data-gallery="portfolio-gallery-product"
+                  class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=8) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <!-- <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding newcardflex">
+              <img src="{{ url_for('static', filename='parts/nc1.jpg') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Primary Coil for 250Amp</h4>
+                <p>Primary Coil</p>
+                <a href="{{ url_for('static', filename='parts/nc1.jpg') }}" title="Primary Coil for 250Amp"
+                  data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=20) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div> -->
+            <!-- End Portfolio Item -->
+
+            <!-- <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product newcardflex">
+              <img src="{{ url_for('static', filename='assets/img/masonry-portfolio/masonry-portfolio-8.jpg') }}"
+                class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Positive Cable for 250A (3m)</h4>
+                <p>Positive Cable</p>
+                <a href="{{ url_for('static', filename='assets/img/masonry-portfolio/masonry-portfolio-8.jpg') }}"
+                  title="Product 3" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=9) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div> -->
+            <!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding newcardflex">
+              <img src="{{ url_for('static', filename='parts/nc2.jpg') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Primary Coil for 300Amp</h4>
+                <p>Primary Coil</p>
+                <a href="{{ url_for('static', filename='parts/nc2.jpg') }}" title="Primary Coil"
+                  data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=21) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <!-- <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product newcardflex">
+              <img src="{{ url_for('static', filename='assets/img/masonry-portfolio/masonry-portfolio-8.jpg') }}"
+                class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Positive Cable for 400A (3m)</h4>
+                <p>Positive Cable</p>
+                <a href="{{ url_for('static', filename='assets/img/masonry-portfolio/masonry-portfolio-8.jpg') }}"
+                  title="Product 3" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=10) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div> -->
+            <!-- End Portfolio Item -->
+
+            <!-- <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding newcardflex">
+              <img src="{{ url_for('static', filename='assets/img/masonry-portfolio/masonry-portfolio-9.jpg') }}"
+                class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Secondary Coil for 250Amp</h4>
+                <p>Secondary Coil</p>
+                <a href="{{ url_for('static', filename='assets/img/masonry-portfolio/masonry-portfolio-9.jpg') }}"
+                  title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=22) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div> -->
+            <!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product newcardflex">
+              <img src="{{ url_for('static', filename='parts/earthingcable1.png') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Earthing Cable for 250A (2m)</h4>
+                <p>Earthing Cable</p>
+                <a href="{{ url_for('static', filename='parts/earthingcable1.png') }}"
+                  title="Earthing Cable for 250A (2m)" data-gallery="portfolio-gallery-product"
+                  class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=11) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding newcardflex newcardflex">
+              <img src="{{ url_for('static', filename='parts/sc3.jpg') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Secondary Coil for 300Amp</h4>
+                <p>Secondary Coil</p>
+                <a href="{{ url_for('static', filename='parts/sc3.jpg') }}" title="Secondary coil"
+                  data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=23) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div>
+            <!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product newcardflex">
+              <img src="{{ url_for('static', filename='parts/earthingcable2.png') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Earthing Cable for 400A (2m)</h4>
+                <p>Earthing Cable</p>
+                <a href="{{ url_for('static', filename='parts/earthingcable2.png') }}"
+                  title="Earthing Cable for 400A (2m)" data-gallery="portfolio-gallery-product"
+                  class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=12) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding newcardflex">
+              <img src="{{ url_for('static', filename='parts/diode3.jpg') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Diodes 150Amp</h4>
+                <p>110Amp Diode</p>
+                <a href="{{ url_for('static', filename='parts/diode3.jpg') }}" title="Diodes 150Amp"
+                  data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=24) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product newcardflex">
+              <img src="{{ url_for('static', filename='parts/heaterPlugWire1.jpg') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Heater 230V with Plug and Wire</h4>
+                <p>Heating Element</p>
+                <a href="{{ url_for('static', filename='parts/heaterPlugWire1.jpg') }}"
+                  title="Heater 230V with Plug & Wire " data-gallery="portfolio-gallery-product"
+                  class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=13) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding newcardflex">
+              <img src="{{ url_for('static', filename='parts/diode1.jpg') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Diodes 200Amp</h4>
+                <p>200Amp Diode</p>
+                <a href="{{ url_for('static', filename='parts/diode1.jpg') }}" title="Diodes 200Amp"
+                  data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=25) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product newcardflex">
+              <img src="{{ url_for('static', filename='parts/regulator1.jpg') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Regulator CO2</h4>
+                <p>Gas Regulator</p>
+                <a href="{{ url_for('static', filename='parts/regulator1.jpg') }}" title="Regulator CO2"
+                  data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=14) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding newcardflex">
+              <img src="{{ url_for('static', filename='parts/rectifier1.jpg') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Rectifier Assembly</h4>
+                <p>Rectifier Assembly</p>
+                <a href="{{ url_for('static', filename='parts/rectifier1.jpg') }}" title="Rectifier Assembly"
+                  data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=26) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div>
+            <!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product newcardflex">
+              <img src="{{ url_for('static', filename='parts/flowmeter1.jpg') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Flowmeter Assembly</h4>
+                <p>Gas Flowmeter</p>
+                <a href="{{ url_for('static', filename='parts/flowmeter1.jpg') }}" title="Flowmeter Assembly"
+                  data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=15) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <!-- <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding newcardflex">
+              <img src="{{ url_for('static', filename='parts/nf1.jpg') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Exhaust Fan 12"</h4>
+                <p>Exhaust Fan</p>
+                <a href="{{ url_for('static', filename='parts/nf1.jpg') }}" title="Exhaust Fan 12"
+                  data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=27) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div> -->
+            <!-- End Portfolio Item -->
+
+            <!-- <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product newcardflex">
+              <img src="{{ url_for('static', filename='parts/.jpg') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Gas Hose Assembly (5m)</h4>
+                <p>Gas Hose</p>
+                <a href="{{ url_for('static', filename='parts/.jpg') }}" title="Product 3"
+                  data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=16) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div> -->
+            <!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding newcardflex">
+              <img src="{{ url_for('static', filename='parts/nf2.jpg') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Exhaust Fan 15"</h4>
+                <p>Exhaust Fan</p>
+                <a href="{{ url_for('static', filename='parts/nf2.jpg') }}" title="Exhaust Fan 15"
+                  data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=28) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding newcardflex">
+              <img src="{{ url_for('static', filename='parts/board1.jpg') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Printed Circuit Board</h4>
+                <p>PCB Board</p>
+                <a href="{{ url_for('static', filename='parts/board1.jpg') }}" title="Printed Circuit Board"
+                  data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=29) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding newcardflex">
+              <img src="{{ url_for('static', filename='parts/cc1.jpg') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Choke Coil"</h4>
+                <p>Inner Choke Coil</p>
+                <a href="{{ url_for('static', filename='parts/cc1.jpg') }}" title="Choke Coil"
+                  data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=39) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding newcardflex">
+              <img src="{{ url_for('static', filename='parts/contacter16A4.jpg') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Contactors 16Amp</h4>
+                <p>Contactor</p>
+                <a href="{{ url_for('static', filename='parts/contacter16A4.jpg') }}" title="Contactors 16Amp"
+                  data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=30) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding newcardflex">
+              <img src="{{ url_for('static', filename='parts/c1.jpg') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Three Phase Main Coil With Core"</h4>
+                <p>Main Coil</p>
+                <a href="{{ url_for('static', filename='parts/c1.jpg') }}" title="Main Coil"
+                  data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=40) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding newcardflex">
+              <img src="{{ url_for('static', filename='parts/contacter25A2.jpg') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Contactors 25Amp</h4>
+                <p>Contactor</p>
+                <a href="{{ url_for('static', filename='parts/contacter25A2.jpg') }}" title="Contactors 25Amp"
+                  data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=31) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding newcardflex">
+              <img src="{{ url_for('static', filename='parts/shunt300a.png') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Shunt Assembly for 300A</h4>
+                <p>Shunt Assembly</p>
+                <a href="{{ url_for('static', filename='parts/shunt300a.png') }}" title="Shunt Assembly for 300A"
+                  data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=37) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding newcardflex">
+              <img src="{{ url_for('static', filename='parts/ofswitch1.jpg') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>On/Off Rotary Switch 16Amp</h4>
+                <p>Rotary Switch</p>
+                <a href="{{ url_for('static', filename='parts/ofswitch1.jpg') }}" title="On/Off Rotary Switch 16Amp"
+                  data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=32) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <!-- <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding newcardflex">
+              <img src="{{ url_for('static', filename='parts/voltmeter1.jpg') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Voltmeter 0-60V</h4>
+                <p>Voltmeter</p>
+                <a href="{{ url_for('static', filename='parts/voltmeter1.jpg') }}" title="Voltmeter 0-60V"
+                  data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=33) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div> -->
+            <!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding newcardflex">
+              <img src="{{ url_for('static', filename='parts/shunt400a.png') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Shunt Assembly for 400A</h4>
+                <p>Shunt Assembly</p>
+                <a href="{{ url_for('static', filename='parts/shunt400a.png') }}" title="Shunt Assembly for 400A"
+                  data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=38) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding newcardflex">
+              <img src="{{ url_for('static', filename='parts/voltmeter1.jpg') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Voltmeter 0-100V</h4>
+                <p>Voltmeter</p>
+                <a href="{{ url_for('static', filename='parts/voltmeter1.jpg') }}" title="Voltmeter 0-100V"
+                  data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=34) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <!-- <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding newcardflex">
+              <img src="{{ url_for('static', filename='parts/ammeter1.jpg') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Ammeter 0-300A</h4>
+                <p>Ammeter</p>
+                <a href="{{ url_for('static', filename='parts/ammeter1.jpg') }}" title="Ammeter 0-300A"
+                  data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=35) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div> -->
+            <!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding newcardflex">
+              <img src="{{ url_for('static', filename='parts/ammeter1.jpg') }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Ammeter 0-400A</h4>
+                <p>Ammeter</p>
+                <a href="{{ url_for('static', filename='parts/ammeter1.jpg') }}" title="Ammeter 0-400A"
+                  data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="{{ url_for('log.mech_machine', id=36) }}" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+          </div><!-- End Portfolio Container -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Portfolio Section -->
+
+
+    <div class="container section-title" data-aos="fade-up">
+      <h2>Welding Machines</h2>
+      <p>Transrect Sales & Services - Expert Guidance for Your Welding Needs!</p>
+    </div>
+    <!-- End Section Title -->
+
+    <div class="site-section slider-team-wrap">
+      <div class="container">
+        <div class="slider-nav d-flex justify-content-end mb-3">
+          <a href="#" class="js-prev js-custom-prev"><i class="bi bi-arrow-left-short"></i></a>
+          <a href="#" class="js-next js-custom-next"><i class="bi bi-arrow-right-short"></i></a>
+        </div>
+
+        <div class="swiper init-swiper" data-aos="fade-up" data-aos-delay="100">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 600,
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": "1",
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+              },
+              "navigation": {
+                "nextEl": ".js-custom-next",
+                "prevEl": ".js-custom-prev"
+              },
+              "breakpoints": {
+                "640": {
+                  "slidesPerView": 2,
+                  "spaceBetween": 30
+                },
+                "768": {
+                  "slidesPerView": 3,
+                  "spaceBetween": 30
+                },
+                "1200": {
+                  "slidesPerView": 3,
+                  "spaceBetween": 30
+                }
+              }
+            }
+          </script>
+
+          <div class="swiper-wrapper">
+            <!-- Card 1 -->
+            <div class="swiper-slide">
+              <div class="team">
+                <div class="pic">
+                  <img src="{{ url_for('static', filename='assets/img/card/stepbystep.jpg') }}" alt="Setup Guide"
+                    class="img-fluid">
+
+                </div>
+                <h3>
+                  <a href="https://youtu.be/3lXNgTxrklM?si=AAiSHsW7q5XINQ1G"><span class="">Step-by-Step</span> Setup
+                    Guide</a>
+                </h3>
+                <span class="d-block position">Guideline</span>
+                <p>
+                  Learn how to set up your welding machine correctly, ensuring safe and efficient operation for all
+                  projects.
+                </p>
+                <p class="mb-0">
+                  <a href="https://youtu.be/3lXNgTxrklM?si=AAiSHsW7q5XINQ1G" class="more dark">Read More <span
+                      class="bi bi-arrow-right-short"></span></a>
+                </p>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="swiper-slide">
+              <div class="team">
+                <div class="pic">
+                  <img src="{{ url_for('static', filename='assets/img/card/maintance.jpg') }}" alt="Maintenance Tips"
+                    class="img-fluid">
+                </div>
+                <h3>
+                  <a href="https://youtu.be/VRZDeQmrnPk?si=AMs6QE8yO6N72gVx"><span class="">Maintenance</span>
+                    Tips</a>
+                </h3>
+                <span class="d-block position">Best Practices</span>
+                <p>
+                  Ensure your welding machines last longer with regular inspections and proper maintenance techniques.
+                </p>
+                <p class="mb-0">
+                  <a href="https://youtu.be/VRZDeQmrnPk?si=AMs6QE8yO6N72gVx" class="more dark">Learn More <span
+                      class="bi bi-arrow-right-short"></span></a>
+                </p>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="swiper-slide">
+              <div class="team">
+                <div class="pic">
+                  <img src="{{ url_for('static', filename='assets/img/card/saftey.jpg') }}" alt="Safety Precautions"
+                    class="img-fluid">
+                </div>
+                <h3>
+                  <a href="https://youtu.be/z634Zr2KjCk?si=PqEU2U0kChwv4p-7"><span class="">Safety</span>
+                    Precautions</a>
+                </h3>
+                <span class="d-block position">Essential Guidelines</span>
+                <p>
+                  Discover key safety precautions to prevent accidents and injuries while using welding equipment.
+                </p>
+                <p class="mb-0">
+                  <a href="https://youtu.be/z634Zr2KjCk?si=PqEU2U0kChwv4p-7" class="more dark">Read More <span
+                      class="bi bi-arrow-right-short"></span></a>
+                </p>
+              </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="swiper-slide">
+              <div class="team">
+                <div class="pic">
+                  <img src="{{ url_for('static', filename='assets/img/card/advance.jpg') }}" alt="Advanced Techniques"
+                    class="img-fluid">
+                </div>
+                <h3>
+                  <a href="https://youtu.be/fcqHMKoCHH4?si=wL8A5TJTL2wYdC1r"><span class="">Advanced</span>
+                    Techniques</a>
+                </h3>
+                <span class="d-block position">Tutorial</span>
+                <p>
+                  Take your welding skills to the next level with advanced tips and techniques for complex projects.
+                </p>
+                <p class="mb-0">
+                  <a href="https://youtu.be/fcqHMKoCHH4?si=wL8A5TJTL2wYdC1r" class="more dark">Explore Now <span
+                      class="bi bi-arrow-right-short"></span></a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Welding Machines Section -->
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Contact</h2>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="mb-4" data-aos="fade-up" data-aos-delay="200">
+          <iframe style="border:0; width: 100%; height: 270px;"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.5792615371324!2d73.87132910979099!3d18.637984682405403!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c7004c14f5df%3A0x2a0a45e80305f8fa!2sTransrect%20building!5e0!3m2!1sen!2sus!4v1741969324676!5m2!1sen!2sus"
+            frameborder="0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div><!-- End Google Maps -->
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4">
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+              <i class="bi bi-geo-alt flex-shrink-0"></i>
+              <div>
+                <h3>Address</h3>
+                <p>388/44, St Dnyaneshwar Rd, Laxmi-Narayan Nagar, Mauli Nagar, Charholi Budruk, Pimpri-Chinchwad,
+                  Maharashtra 412105, India</p>
+              </div>
+            </div><!-- End Info Item -->
+
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+              <i class="bi bi-telephone flex-shrink-0"></i>
+              <div>
+                <h3>Call Us</h3>
+                <p>9511703739</p>
+                <p>8806619265</p>
+              </div>
+            </div><!-- End Info Item -->
+
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="500">
+              <i class="bi bi-envelope flex-shrink-0"></i>
+              <div>
+                <h3>Email Us</h3>
+                <p>transrectsalesandservices@gmail.com</p>
+              </div>
+            </div><!-- End Info Item -->
+
+          </div>
+
+
+
+
+          <div class="col-lg-8">
+            <form method="POST" action="{{ url_for('log.communication_main', ) }}" class="custom-email-form"
+              data-aos="fade-up" data-aos-delay="200" novalidate>
+              {{ contact_form.csrf_token }}
+
+              <div class="row gy-4">
+                <div class="col-md-6">
+                  {{ contact_form.name() }}
+                </div>
+
+                <div class="col-md-6">
+                  {{ contact_form.email() }}
+                </div>
+
+                <div class="col-md-12">
+                  {{ contact_form.subject() }}
+                </div>
+
+                <div class="col-md-12">
+                  {{ contact_form.message() }}
+                </div>
+
+                <div class="col-md-12 text-center">
+                  {{ contact_form.submit() }}
+                </div>
+              </div>
+            </form>
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+          <!-- End Contact Form  -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Contact Section -->
+
+  </main>
+
+  {% endblock %}
+
+  <footer id="footer" class="footer dark-background">
+
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="/home" class="d-flex align-items-center">
+            <span class="sitename">Transrect Sales & Services</span>
+          </a>
+          <div class="footer-contact pt-3">
+            <p>Address</p>
+            <p>388/44, St Dnyaneshwar Rd, Laxmi-Narayan Nagar, Mauli Nagar, Charholi Budruk, Pimpri-Chinchwad,
+              Maharashtra 412105, India</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>9511703739/8806619265</span></p>
+            <br>
+            <p><strong>Email:</strong> <span>transrectsalesandservices@gmail.com</span></p>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><i class="bi bi-chevron-right"></i> <a href="/home">Home</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#about">About us</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#services">Services</a></li>
+          </ul>
+        </div>
+        <!--
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Web Design</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Web Development</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Product Management</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Marketing</a></li>
+          </ul>
+        </div>-->
+
+        <div class="col-lg-4 col-md-12">
+          <h4>Follow Us</h4>
+          <p>Follow Us on Our Socials </p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Transrect Sales & Servies </strong> <span>All Rights
+          Reserved</span></p>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you've purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+        <!--Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
+
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <script>
+    document.querySelector(".php-email-form").addEventListener("submit", function (event) {
+      console.log("Form submitted!");
+    });
+  </script>
+
+  <!-- Vendor JS Files -->
+  <script src="{{ url_for('static', filename='assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/vendor/php-email-form/validate.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/vendor/aos/aos.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+
+  <!-- Main JS File -->
+  <script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script>
+        function updateTotalAmount() {
+            let total = 0;
+            document.querySelectorAll('.amount').forEach(amount => {
+                total += parseFloat(amount.innerText);
+            });
+            document.getElementById('totalAmount').innerText = total;
+        }
+
+        window.onload = function () {
+            updateTotalAmount();
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container mt-4">
+        <div class="card p-4 shadow">
+            <!-- Inventory Management Title with Add Item Button -->
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Inventory Management</h2>
+                <button type="submit" form="inventoryForm" class="btn btn-success">Add Item</button>
+            </div>
+
+            <!-- Form for adding items -->
+            <form id="inventoryForm" method="POST" class="d-flex gap-2 mt-3">
+                {{ form.hidden_tag() }}
+                {{ form.item_name(class="form-control", placeholder="Item Name") }}
+                {{ form.quantity(class="form-control", placeholder="Quantity") }}
+                {{ form.amount(class="form-control", placeholder="Amount") }}
+            </form>
+
+            <!-- Inventory Table -->
+            <table class="table table-bordered mt-3">
+                <thead>
+                    <tr>
+                        <th>Item Name</th>
+                        <th>Quantity</th>
+                        <th>Amount</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                    <tr>
+                        <td>{{ item.item_name }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td class="amount">{{ item.amount }}</td>
+                        <td>
+                            <form method="POST" action="{{ url_for('log.inventory_delete_item', item_id=item.id) }}"
+                                style="display: inline;">
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <!-- Total Expensed Amount -->
+            <h5 class="text-end">Total Expensed Amount: <span id="totalAmount">0</span></h5>
+        </div>
+    </div>
+</body>
+
+</html>

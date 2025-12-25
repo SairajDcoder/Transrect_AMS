@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welding Machine Maintenance</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+
+        #header {
+            background: #333;
+            color: white;
+            padding: 15px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        #machine-details {
+            background: white;
+            padding: 20px;
+            width: 50%;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin: 5px;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="header" onclick="window.location.href='/'">Transrect Sales & Services</div>
+
+    <h2>Machine Maintenance Information</h2>
+
+    <div id="machine-details">
+        <h3 id="machine-name">{{ machine.name }}</h3>
+        <p><strong>Last Serviced:</strong> {{ machine.lastService }}</p>
+        <p><strong>Next Service Due:</strong> {{ machine.nextService }}</p>
+        <button onclick="navigateMachine(-1)">Previous</button>
+        <button onclick="navigateMachine(1)">Next</button>
+    </div>
+
+    <h3>Maintenance Chart</h3>
+    <canvas id="maintenanceChart" width="400" height="200"></canvas>
+
+
+    <script>
+        let machineIndex = {{ index }};
+        const machines = {{ machines | tojson }};
+
+        function navigateMachine(direction) {
+            const newIndex = machineIndex + direction;
+            if (newIndex >= 0 && newIndex < machines.length) {
+                window.location.href = `/maintenance/machine/${machines[newIndex].id}`;
+            }
+        }
+
+
+        function displayChart() {
+            const ctx = document.getElementById("maintenanceChart").getContext("2d");
+            const currentMachine = machines[machineIndex];
+            const currentDate = new Date().getTime();
+            const lastServiceDays = (currentDate - new Date(currentMachine.lastService).getTime()) / (1000 * 60 * 60 * 24);
+            const nextServiceDays = (new Date(currentMachine.nextService).getTime() - currentDate) / (1000 * 60 * 60 * 24);
+
+
+            new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: [currentMachine.name],
+                    datasets: [
+                        {
+                            label: "Days Since Last Service",
+                            data: [lastServiceDays],
+                            backgroundColor: "rgba(255, 165, 0, 0.8)"
+                        },
+                        {
+                            label: "Days Until Next Service",
+                            data: [nextServiceDays],
+                            backgroundColor: "rgba(0, 0, 255, 0.8)"
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: "Days"
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        displayChart();
+    </script>
+
+
+</body>
+
+</html>

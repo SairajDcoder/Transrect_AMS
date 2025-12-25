@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery Status</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+
+            margin: auto;
+        }
+
+        .section {
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .status {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        a {
+            display: block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="section">
+            <h2>Check Delivery Status</h2>
+            <input type="text" id="trackingNumber" placeholder="Enter tracking number">
+            <button onclick="checkDelivery()">Check Status</button>
+            <div class="status" id="statusMessage"></div>
+            <a href="{{ url_for('log.exclusive_inbox') }}">Go to Inbox</a>
+        </div>
+    </div>
+
+    <script>
+        function checkDelivery() {
+            let trackingNumber = document.getElementById("trackingNumber").value;
+            let statusMessage = document.getElementById("statusMessage");
+
+            if (trackingNumber === "123456") {
+                statusMessage.textContent = "Your package is out for delivery!";
+                statusMessage.style.color = "green";
+            } else if (trackingNumber) {
+                statusMessage.textContent = "Invalid tracking number.";
+                statusMessage.style.color = "red";
+            } else {
+                statusMessage.textContent = "Please enter a tracking number.";
+                statusMessage.style.color = "orange";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

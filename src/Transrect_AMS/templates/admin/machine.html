@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welding Machines Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/machine_style.css') }}">
+</head>
+
+<body>
+
+    <header>WELDING MACHINES DASHBOARD</header>
+
+    <div class="container">
+        <div class="machine-list" id="machineList">
+            {% for index, machine in machines %}
+            <div class="machine-item" onclick="window.location.href='/stat/status/{{ index }}'">
+                <img src="{{ url_for('static', filename=machine.image) }}" alt="{{ machine.name }}" width="150px"><br>
+                <strong>{{ machine.name }}</strong> (Purchased: {{ machine.purchase_date }})
+
+                <div class="progress-container">
+                    <div class="progress-bar"
+                        style="width:{{ calculate_remaining_lifespan(machine.purchase_date, machine.lifespan) }}%">
+                        {{ calculate_remaining_lifespan(machine.purchase_date, machine.lifespan) }}%
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="machine-details" id="machineDetails">
+            {% if machine_details_html %}
+            {{ machine_details_html|safe }}
+            {% else %}
+            <h2>Machine Details</h2>
+            <p>Select a machine to view details.</p>
+            {% endif %}
+        </div>
+    </div>
+
+</body>
+
+</html>

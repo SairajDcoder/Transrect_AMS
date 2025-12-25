@@ -1,0 +1,197 @@
+/* General Styling */
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #1a1a2e, #16213e);
+  color: #fff;
+  background-image: url("../images/welding-metal-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+header {
+  background: linear-gradient(to right, #0f3460, #1a1a2e);
+  padding: 25px;
+  text-align: center;
+  font-size: 34px;
+  font-weight: bold;
+  color: #f8f8f8;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 40px auto;
+  background: rgba(22, 33, 62, 0.95);
+  color: #e0e0e0;
+  padding: 35px;
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8);
+  transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.machine-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 35px;
+  padding: 25px;
+}
+
+.machine-item {
+  background: linear-gradient(135deg, #16213e, #0f3460);
+  padding: 30px;
+  border-radius: 18px;
+  cursor: pointer;
+  text-align: center;
+  color: white;
+  transition: transform 0.3s, background 0.3s;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.machine-item:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #1b1b3a, #533483);
+}
+
+.machine-item img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 4px solid #f4f4f4;
+}
+
+.machine-details {
+  width: 100%;
+  max-width: 800px;
+  background: rgba(15, 52, 96, 0.9);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  margin: 0 auto; /* Center alignment */
+}
+
+.progress-container {
+  background: #222;
+  border-radius: 15px;
+  overflow: hidden;
+  margin: 20px auto; /* Centering the progress bar */
+  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  max-width: 600px; /* Increased width for better appearance */
+}
+
+.progress-bar {
+  height: 45px; /* Increased height for better visibility */
+  background: linear-gradient(to right, #00c9ff, #92fe9d);
+  text-align: center;
+  line-height: 45px;
+  color: white;
+  font-weight: bold;
+  transition: width 1s ease-in-out;
+  border-radius: 15px;
+  font-size: 20px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+ul li {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 12px 20px;
+  margin: 8px 0;
+  border-radius: 10px;
+  text-align: center;
+  width: 80%;
+  max-width: 600px;
+  font-size: 18px;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background: linear-gradient(to right, #0f3460, #1a1a2e);
+  color: #f4f4f4;
+  margin-top: 35px;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* Circular Progress Bar */
+@keyframes progress {
+  0% {
+    --percentage: 0;
+  }
+  100% {
+    --percentage: var(--value);
+  }
+}
+
+@property --percentage {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+[role="progressbar"] {
+  --percentage: var(--value);
+  --primary: #00c9ff;
+  --secondary: #92fe9d;
+  --size: 180px; /* Increased size for better visibility */
+  animation: progress 2s 0.5s forwards;
+  width: var(--size);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  margin: 25px auto;
+  box-shadow: 0 0 15px rgba(0, 201, 255, 0.8);
+}
+
+[role="progressbar"]::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: conic-gradient(
+    var(--primary) calc(var(--percentage) * 1%),
+    var(--secondary) 0
+  );
+  mask: radial-gradient(white 55%, transparent 0);
+  -webkit-mask: radial-gradient(#0000 55%, #000 0);
+}
+
+[role="progressbar"]::after {
+  counter-reset: percentage var(--value);
+  content: counter(percentage) "%";
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: calc(var(--size) / 5);
+  color: var(--primary);
+}

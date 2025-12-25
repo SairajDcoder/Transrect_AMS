@@ -1,0 +1,65 @@
+{% extends "portfolio-details.html" %}
+
+{% block title %} Services{% endblock %}
+
+{% block content %}
+<main class="main">
+
+  <!-- Page Title -->
+  <div class="page-title dark-background">
+    <div class="container">
+      <h1>Service Details</h1>
+      <nav class="breadcrumbs">
+        <ol>
+          <li><a href="/home">Home</a></li>
+          <li class="current">Service Details</li>
+        </ol>
+      </nav>
+    </div>
+  </div><!-- End Page Title -->
+
+  <!-- Service Details Section -->
+  <section id="service-details" class="service-details section">
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="services-list">
+            <a href="{{ url_for('log.special_service', id=1) }}" class="active">Comprehensive Welding Machines</a>
+            <a href="{{ url_for('log.special_service', id=2) }}">Genuine Welding Parts</a>
+            <a href="{{ url_for('log.special_service', id=3) }}">Expert Consultation</a>
+            <a href="{{ url_for('log.special_service', id=4) }}">Maintenance & Support</a>
+            <a href="{{ url_for('log.special_service', id=5) }}">Customized Solutions</a>
+            <a href="{{ url_for('log.special_service', id=6) }}">Industry-Standard Products</a>
+          </div>
+
+
+        </div>
+
+        <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+          <h3>{{ desc['title'] }}</h3>
+          <p>
+            {{ desc['subtitle'] }}
+          </p>
+          <ul>
+            <li><i class="bi bi-check-circle"></i> <span>{{ desc['features'][0] }}</span></li>
+            <li><i class="bi bi-check-circle"></i> <span>{{ desc['features'][1] }}</span>
+            </li>
+            <li><i class="bi bi-check-circle"></i> <span>{{ desc['features'][2] }}</span></li>
+          </ul>
+          <p>
+            <b>{{ desc['title'] }}</b>
+          </p>
+          <p>
+            {{ desc['summary'] }}
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section><!-- /Service Details Section -->
+
+</main>
+
+{% endblock %}

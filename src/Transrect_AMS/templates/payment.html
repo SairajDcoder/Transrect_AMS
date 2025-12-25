@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payments Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #fff;
+            color: black;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #333;
+            padding: 15px;
+            color: white;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f8f8f8;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border: 2px solid black;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        input,
+        select,
+        button {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid black;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .btn {
+            cursor: pointer;
+            background-color: white;
+            border: 2px solid black;
+        }
+
+        .btn:hover {
+            background-color: #ddd;
+        }
+
+        /* Hide QR code and Transaction ID by default */
+        #qr-code,
+        #transaction-id {
+            display: none;
+        }
+
+        #qr-code img {
+            width: 100%;
+            max-width: 200px;
+            margin: 0 auto;
+        }
+
+        .resize {
+            width: 95%;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 12%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .popup.error {
+            background-color: #f2dede;
+            color: #a94442;
+        }
+
+        .popup.success {
+            background-color: #dff0d8;
+            color: #3c763d;
+        }
+
+        .popup.info {
+            background-color: #d9edf7;
+            /* Light blue background */
+            color: #31708f;
+            /* Dark blue text */
+            border: 1px solid #bce8f1;
+            /* Slight border for definition */
+        }
+    </style>
+    <script>
+        function showPopup(message, type) {
+            var popup = document.getElementById('popup');
+            popup.innerHTML = message;
+            popup.className = 'popup ' + type;
+            popup.style.display = 'block';
+            setTimeout(function () {
+                popup.style.display = 'none';
+            }, 3000);
+        }
+        window.onload = function () {
+
+            toggleFields();  // Ensure payment method fields update correctly
+            {% with messages = get_flashed_messages(with_categories = true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            showPopup("{{ message }}", "{{ category }}");
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+        }
+    </script>
+</head>
+
+<body>
+    <div id="popup" class="popup"></div>
+    <div class="navbar">Trasrect Sales & Services</div>
+    <div class="container">
+        <h2>Make a Payment</h2>
+        <form method="POST" action="{{ url_for('log.money_payment') }}" novalidate>
+            {{ form.hidden_tag() }}
+
+            <!-- Hidden fields to store machine details -->
+            <input type="hidden" name="machine_id" value="{{ machine_id }}">
+            <input type="hidden" name="machine_name" value="{{ machine_name }}">
+            <input type="hidden" name="machine_price" value="{{ machine_price }}">
+            <input type="hidden" name="machine_quantities" value="{{ machine_quantities }}">
+            <input type="hidden" name="machine_names" value="{{ machine_names }}">
+
+            <label>{{ form.name.label }}</label>
+            <div class="resize">
+                {{ form.name }}
+            </div>
+
+            <label>{{ form.email.label }}</label>
+            <div class="resize">
+                {{ form.email }}
+            </div>
+
+            <label>{{ form.amount.label }}</label>
+            <div class="resize">
+                {{ form.amount }}
+            </div>
+
+            <label>{{ form.location.label }}</label>
+            <div class="resize">
+                {{ form.location }}
+            </div>
+
+            <label>{{ form.payment_method.label }}</label>
+            {{ form.payment_method(onchange="toggleFields()") }}
+
+            <div id="qr-code">
+                <p>Scan the QR Code to pay</p>
+                <img src="{{ url_for('static', filename='QR/saiQR.jpg') }}" alt="QR Code">
+            </div>
+
+            <div id="transaction-id" class="resize">
+                <label>{{ form.upi_transaction_id.label }}</label>
+                {{ form.upi_transaction_id }}
+            </div>
+
+            {{ form.submit }}
+        </form>
+
+    </div>
+
+    <script>
+        function toggleFields() {
+            let paymentMethod = document.querySelector("select").value;
+            let qrCode = document.getElementById("qr-code");
+            let transactionId = document.getElementById("transaction-id");
+
+            if (paymentMethod === "googlepay") {
+                qrCode.style.display = "block";
+                transactionId.style.display = "block";
+            } else {
+                qrCode.style.display = "none";
+                transactionId.style.display = "none";
+            }
+
+            // Send request to update backend validation dynamically
+            fetch("{{ url_for('log.money_update_payment_validation') }}", {
+                method: "POST",
+                body: JSON.stringify({ payment_method: paymentMethod }),
+                headers: { "Content-Type": "application/json" }
+            });
+        }
+
+        // Run function on page load to set initial state
+        // window.onload = toggleFields;
+    </script>
+</body>
+
+</html>
