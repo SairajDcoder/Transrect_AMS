@@ -85,7 +85,7 @@ def create_app():
     psd = "sai3606"
 
     # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:sai3606@localhost/TransrectDB'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:sai3606@localhost:5432/TransrectDB'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://sairaj:lOWaQhbXVzD8KPOGQppcWlUQjXuQDaN0@dpg-d56em46uk2gs73cf70u0-a/transrectdb'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     db.init_app(app)
